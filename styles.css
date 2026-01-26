@@ -68,6 +68,16 @@ a:focus-visible {
   display: none;
 }
 
+/* Generic hidden class */
+.hidden {
+  display: none !important;
+}
+
+/* NSFW-only elements (shown only in 18+ mode) */
+.nsfw-only {
+  transition: opacity 0.3s ease;
+}
+
 /* Landing Page Styles */
 .landing {
   min-height: 100vh;
@@ -112,6 +122,53 @@ a:focus-visible {
   color: #475569;
   margin-bottom: 2rem;
   line-height: 1.6;
+}
+
+/* Mode Toggle Styles */
+.mode-toggle {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  margin-bottom: 0.75rem;
+}
+
+.mode-button {
+  padding: 0.75rem 1.5rem;
+  border: 2px solid #e2e8f0;
+  background: white;
+  border-radius: 50px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  color: #64748b;
+}
+
+.mode-button:hover {
+  border-color: #667eea;
+  color: #667eea;
+}
+
+.mode-button.active {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border-color: transparent;
+}
+
+#nsfw-mode.active {
+  background: linear-gradient(135deg, #dc2626 0%, #f97316 100%);
+}
+
+.mode-description {
+  font-size: 0.9rem;
+  color: #94a3b8;
+  margin-bottom: 1.5rem;
+  min-height: 1.5em;
+}
+
+.mode-description.nsfw-active {
+  color: #dc2626;
+  font-weight: 500;
 }
 
 .start-button {
@@ -408,6 +465,17 @@ a:focus-visible {
   opacity: 0.95;
 }
 
+.result-adjective {
+  font-size: 1.5rem;
+  font-weight: 600;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 0.5rem 1.25rem;
+  border-radius: 50px;
+  display: inline-block;
+  margin-bottom: 0.75rem;
+  backdrop-filter: blur(4px);
+}
+
 .results-content {
   padding: 2rem;
 }
@@ -448,6 +516,12 @@ a:focus-visible {
   font-size: 0.9rem;
   color: #334155;
   font-weight: 500;
+}
+
+.trait-tag.nsfw-trait {
+  background: linear-gradient(135deg, #fef2f2 0%, #fff7ed 100%);
+  border-color: #f97316;
+  color: #c2410c;
 }
 
 .two-column {
@@ -576,6 +650,21 @@ a:focus-visible {
 
   .landing-subtitle {
     font-size: 1.25rem;
+  }
+
+  .mode-toggle {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .mode-button {
+    width: 100%;
+    max-width: 200px;
+  }
+
+  .result-adjective {
+    font-size: 1.25rem;
+    padding: 0.4rem 1rem;
   }
 
   .type-grid {
