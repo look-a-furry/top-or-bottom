@@ -1,3 +1,43 @@
+// Personality Adjectives for 18+ Mode
+const personalityAdjectives = {
+  "dominant": {
+    name: "Dominant",
+    emoji: "👑",
+    description: "You naturally take charge in intimate situations. You enjoy being in control, setting the pace, and guiding your partner. Your confidence and assertiveness make you a natural leader in the bedroom.",
+    traits: ["Assertive", "Confident", "Protective", "In Control", "Commanding"]
+  },
+  "submissive": {
+    name: "Submissive",
+    emoji: "🦋",
+    description: "You find pleasure in surrendering control to a trusted partner. You enjoy being guided, following directions, and letting someone else take the lead. Your trust and openness create deep connections.",
+    traits: ["Trusting", "Receptive", "Devoted", "Yielding", "Responsive"]
+  },
+  "switch": {
+    name: "Switch",
+    emoji: "🔄",
+    description: "You're versatile and adaptable, equally comfortable taking charge or surrendering control depending on your mood and partner. Your flexibility makes you an exciting and unpredictable partner.",
+    traits: ["Versatile", "Adaptable", "Balanced", "Intuitive", "Dynamic"]
+  },
+  "kinky": {
+    name: "Kinky",
+    emoji: "⛓️",
+    description: "You have an adventurous spirit when it comes to intimacy. You're curious about exploring beyond the conventional and enjoy trying new things that push boundaries in exciting ways.",
+    traits: ["Adventurous", "Curious", "Open-minded", "Creative", "Daring"]
+  },
+  "vanilla": {
+    name: "Vanilla",
+    emoji: "🌸",
+    description: "You appreciate intimate connections that focus on emotional depth and traditional expressions of affection. You value romance, tenderness, and meaningful connection over novelty.",
+    traits: ["Romantic", "Tender", "Sensual", "Affectionate", "Intimate"]
+  },
+  "playful": {
+    name: "Playful",
+    emoji: "😈",
+    description: "You bring a sense of fun and lightheartedness to intimate moments. You enjoy teasing, games, and keeping things exciting with humor and spontaneity.",
+    traits: ["Teasing", "Fun-loving", "Spontaneous", "Mischievous", "Lighthearted"]
+  }
+};
+
 // Personality Types Data
 const personalityTypes = {
   "PYW": {
@@ -247,12 +287,107 @@ const questions = [
   }
 ];
 
+// 18+ Spicy Questions for Intimacy Axis
+const nsfwQuestions = [
+  {
+    id: 13,
+    text: "In intimate moments, you prefer to...",
+    axis: 'intimacy',
+    answers: [
+      { text: "Take complete control and call all the shots", score: 3 },
+      { text: "Usually lead, but enjoy switching things up", score: 1 },
+      { text: "Usually follow, but take charge sometimes", score: -1 },
+      { text: "Surrender completely and let my partner guide me", score: -3 }
+    ]
+  },
+  {
+    id: 14,
+    text: "When it comes to bedroom activities, you...",
+    axis: 'intimacy',
+    answers: [
+      { text: "Love exploring new kinks and pushing boundaries", score: 2, kink: 2 },
+      { text: "Enjoy some variety but have favorite go-to activities", score: 1, kink: 1 },
+      { text: "Prefer keeping things sensual and romantic", score: -1, kink: -1 },
+      { text: "Stick to classic intimacy - it's classic for a reason", score: -2, kink: -2 }
+    ]
+  },
+  {
+    id: 15,
+    text: "Your fantasy scenario would involve...",
+    axis: 'intimacy',
+    answers: [
+      { text: "Being worshipped and having complete power", score: 3 },
+      { text: "An exciting power exchange with my partner", score: 0 },
+      { text: "Deep emotional connection and tender moments", score: -1, kink: -1 },
+      { text: "Being completely at my partner's mercy", score: -3 }
+    ]
+  },
+  {
+    id: 16,
+    text: "The idea of restraints, toys, or roleplay makes you feel...",
+    axis: 'intimacy',
+    answers: [
+      { text: "Extremely excited - the more creative the better!", score: 1, kink: 3 },
+      { text: "Curious and open to trying with the right person", score: 0, kink: 1 },
+      { text: "A bit nervous, but maybe with someone I trust", score: 0, kink: -1 },
+      { text: "Not really my thing - I prefer keeping it simple", score: -1, kink: -3 }
+    ]
+  },
+  {
+    id: 17,
+    text: "When your partner wants to try something new, you...",
+    axis: 'intimacy',
+    answers: [
+      { text: "Get excited and often suggest taking it even further", score: 1, kink: 2 },
+      { text: "Happily go along and enjoy their enthusiasm", score: -1 },
+      { text: "Need time to warm up but usually enjoy it", score: -1 },
+      { text: "Prefer to stick with what I know works for us", score: 0, kink: -2 }
+    ]
+  },
+  {
+    id: 18,
+    text: "In a perfect intimate encounter, you would be...",
+    axis: 'intimacy',
+    answers: [
+      { text: "The one pinning my partner down", score: 3 },
+      { text: "Playfully wrestling for the top position", score: 0 },
+      { text: "Pulled close and held tight", score: -2 },
+      { text: "The one being pinned down", score: -3 }
+    ]
+  },
+  {
+    id: 19,
+    text: "Dirty talk during intimacy...",
+    axis: 'intimacy',
+    answers: [
+      { text: "I love giving commands and praise", score: 2 },
+      { text: "I enjoy playful teasing back and forth", score: 0 },
+      { text: "I like hearing how much I'm wanted", score: -1 },
+      { text: "I prefer soft whispers and sweet words", score: -1, kink: -1 }
+    ]
+  },
+  {
+    id: 20,
+    text: "After an intimate session, you typically want to...",
+    axis: 'intimacy',
+    answers: [
+      { text: "Admire my handiwork and care for my partner", score: 2 },
+      { text: "Cuddle and laugh about what just happened", score: 0 },
+      { text: "Be held and told I did a good job", score: -2 },
+      { text: "Gentle aftercare and sweet pillow talk", score: -1 }
+    ]
+  }
+];
+
 // Quiz State
 let currentQuestion = 0;
-let scores = { social: 0, energy: 0, nature: 0 };
+let scores = { social: 0, energy: 0, nature: 0, intimacy: 0, kink: 0 };
 let selectedAnswer = null;
 let isTransitioning = false;
 let currentPersonality = null;
+let currentAdjective = null;
+let isNsfwMode = false;
+let activeQuestions = questions;
 
 // DOM Elements
 const landingPage = document.getElementById('landing-page');
@@ -263,6 +398,34 @@ const resultsPage = document.getElementById('results-page');
 function init() {
   populateTypeGrid();
   showPage('landing');
+  setMode('sfw'); // Default to SFW mode
+}
+
+// Set quiz mode (SFW or NSFW)
+function setMode(mode) {
+  isNsfwMode = mode === 'nsfw';
+
+  // Update button states
+  const sfwButton = document.getElementById('sfw-mode');
+  const nsfwButton = document.getElementById('nsfw-mode');
+  const modeDescription = document.getElementById('mode-description');
+  const intimacyTraitCard = document.getElementById('intimacy-trait-card');
+
+  if (isNsfwMode) {
+    sfwButton.classList.remove('active');
+    nsfwButton.classList.add('active');
+    modeDescription.textContent = '🔥 Includes spicy questions about intimacy preferences';
+    modeDescription.classList.add('nsfw-active');
+    intimacyTraitCard.classList.remove('hidden');
+    activeQuestions = [...questions, ...nsfwQuestions];
+  } else {
+    sfwButton.classList.add('active');
+    nsfwButton.classList.remove('active');
+    modeDescription.textContent = 'Family-friendly personality quiz';
+    modeDescription.classList.remove('nsfw-active');
+    intimacyTraitCard.classList.add('hidden');
+    activeQuestions = questions;
+  }
 }
 
 // Populate personality type grid on landing page
@@ -301,9 +464,10 @@ function showPage(pageName) {
 // Start the quiz
 function startQuiz() {
   currentQuestion = 0;
-  scores = { social: 0, energy: 0, nature: 0 };
+  scores = { social: 0, energy: 0, nature: 0, intimacy: 0, kink: 0 };
   selectedAnswer = null;
   isTransitioning = false;
+  currentAdjective = null;
 
   showPage('quiz');
   renderQuestion();
@@ -311,11 +475,11 @@ function startQuiz() {
 
 // Render the current question
 function renderQuestion() {
-  const question = questions[currentQuestion];
-  const progress = (currentQuestion / questions.length) * 100;
+  const question = activeQuestions[currentQuestion];
+  const progress = (currentQuestion / activeQuestions.length) * 100;
 
   // Update counter and progress
-  document.getElementById('question-counter').textContent = `${currentQuestion + 1} / ${questions.length}`;
+  document.getElementById('question-counter').textContent = `${currentQuestion + 1} / ${activeQuestions.length}`;
   document.getElementById('progress-fill').style.width = `${progress}%`;
 
   // Update back button state
@@ -330,8 +494,10 @@ function renderQuestion() {
     traitIndicator.textContent = '👥 Social Style';
   } else if (question.axis === 'energy') {
     traitIndicator.textContent = '⚡ Energy Level';
-  } else {
+  } else if (question.axis === 'nature') {
     traitIndicator.textContent = '🌲 Environment';
+  } else if (question.axis === 'intimacy') {
+    traitIndicator.textContent = '🔥 Intimacy Style';
   }
 
   // Render answers
@@ -342,7 +508,7 @@ function renderQuestion() {
     const button = document.createElement('button');
     button.className = 'answer-button';
     button.textContent = answer.text;
-    button.onclick = () => handleAnswerClick(index, answer.score);
+    button.onclick = () => handleAnswerClick(index, answer.score, answer.kink || 0);
     answersContainer.appendChild(button);
   });
 
@@ -351,10 +517,10 @@ function renderQuestion() {
 }
 
 // Handle answer selection
-function handleAnswerClick(answerIndex, score) {
+function handleAnswerClick(answerIndex, score, kinkScore = 0) {
   if (isTransitioning) return;
 
-  const question = questions[currentQuestion];
+  const question = activeQuestions[currentQuestion];
 
   // Mark answer as selected
   selectedAnswer = answerIndex;
@@ -373,10 +539,13 @@ function handleAnswerClick(answerIndex, score) {
 
   // Update scores
   scores[question.axis] += score;
+  if (kinkScore !== 0) {
+    scores.kink += kinkScore;
+  }
 
   // Transition to next question or results
   setTimeout(() => {
-    if (currentQuestion < questions.length - 1) {
+    if (currentQuestion < activeQuestions.length - 1) {
       currentQuestion++;
       selectedAnswer = null;
       isTransitioning = false;
@@ -384,7 +553,8 @@ function handleAnswerClick(answerIndex, score) {
     } else {
       // Calculate final type and show results
       const typeId = calculatePersonalityType();
-      showResults(typeId);
+      const adjective = isNsfwMode ? calculateAdjective() : null;
+      showResults(typeId, adjective);
     }
   }, 400);
 }
@@ -397,6 +567,37 @@ function calculatePersonalityType() {
   return `${social}${energy}${nature}`;
 }
 
+// Calculate intimacy adjective from scores (18+ mode only)
+function calculateAdjective() {
+  const intimacy = scores.intimacy;
+  const kink = scores.kink;
+
+  // Determine dom/sub spectrum
+  // Strong dominant (>= 6), Dominant (2 to 5), Switch (-1 to 1), Submissive (-5 to -2), Strong submissive (<= -6)
+
+  // Determine kink level
+  // Kinky (>= 3), Playful (-2 to 2), Vanilla (<= -3)
+
+  // Combined logic for adjective
+  if (intimacy >= 6) {
+    return kink >= 3 ? 'kinky' : 'dominant';
+  } else if (intimacy >= 2) {
+    if (kink >= 3) return 'kinky';
+    if (kink <= -3) return 'vanilla';
+    return 'dominant';
+  } else if (intimacy >= -1) {
+    if (kink >= 3) return 'kinky';
+    if (kink <= -3) return 'vanilla';
+    return 'switch';
+  } else if (intimacy >= -5) {
+    if (kink >= 3) return 'kinky';
+    if (kink <= -3) return 'vanilla';
+    return 'submissive';
+  } else {
+    return kink >= 3 ? 'kinky' : 'submissive';
+  }
+}
+
 // Go back to previous question
 function goBack() {
   if (currentQuestion > 0 && !isTransitioning) {
@@ -407,7 +608,7 @@ function goBack() {
 }
 
 // Show results page
-function showResults(typeId) {
+function showResults(typeId, adjectiveId = null) {
   const personality = personalityTypes[typeId];
   if (!personality) {
     goHome();
@@ -415,19 +616,48 @@ function showResults(typeId) {
   }
 
   currentPersonality = personality;
+  const adjective = adjectiveId ? personalityAdjectives[adjectiveId] : null;
+  currentAdjective = adjective;
 
   // Update header
   document.getElementById('results-header').style.background = personality.gradient;
   document.getElementById('result-emoji').textContent = personality.emoji;
-  document.getElementById('result-name').textContent = `You're a ${personality.name}!`;
+
+  // Update name with adjective if in NSFW mode
+  const resultAdjective = document.getElementById('result-adjective');
+  const intimacySection = document.getElementById('intimacy-section');
+
+  if (isNsfwMode && adjective) {
+    document.getElementById('result-name').textContent = `You're a ${adjective.name} ${personality.name}!`;
+    resultAdjective.textContent = `${adjective.emoji} ${adjective.name}`;
+    resultAdjective.classList.remove('hidden');
+    intimacySection.classList.remove('hidden');
+    document.getElementById('intimacy-description').textContent = adjective.description;
+  } else {
+    document.getElementById('result-name').textContent = `You're a ${personality.name}!`;
+    resultAdjective.classList.add('hidden');
+    intimacySection.classList.add('hidden');
+  }
+
   document.getElementById('result-tagline').textContent = personality.tagline;
 
   // Update description
   document.getElementById('result-description').textContent = personality.description;
 
-  // Update traits
+  // Update traits (combine personality traits with adjective traits in NSFW mode)
   const traitsContainer = document.getElementById('result-traits');
   traitsContainer.innerHTML = '';
+
+  // Add adjective traits first if in NSFW mode
+  if (isNsfwMode && adjective) {
+    adjective.traits.slice(0, 2).forEach(trait => {
+      const tag = document.createElement('span');
+      tag.className = 'trait-tag nsfw-trait';
+      tag.textContent = trait;
+      traitsContainer.appendChild(tag);
+    });
+  }
+
   personality.traits.forEach(trait => {
     const tag = document.createElement('span');
     tag.className = 'trait-tag';
@@ -478,12 +708,17 @@ function showResults(typeId) {
 async function shareResult() {
   if (!currentPersonality) return;
 
-  const shareText = `I'm a ${currentPersonality.name}! ${currentPersonality.tagline} - Take the Furry Personality Test to find your type!`;
+  let resultName = currentPersonality.name;
+  if (isNsfwMode && currentAdjective) {
+    resultName = `${currentAdjective.name} ${currentPersonality.name}`;
+  }
+
+  const shareText = `I'm a ${resultName}! ${currentPersonality.tagline} - Take the Furry Personality Test to find your type!`;
 
   if (navigator.share) {
     try {
       await navigator.share({
-        title: `I'm a ${currentPersonality.name}!`,
+        title: `I'm a ${resultName}!`,
         text: shareText,
         url: window.location.href
       });

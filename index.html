@@ -25,6 +25,19 @@
             matches your personality best. Are you a loyal Wolf, a clever Fox,
             or perhaps a cozy Rabbit?
           </p>
+
+          <div class="mode-toggle">
+            <button class="mode-button active" id="sfw-mode" onclick="setMode('sfw')">
+              SFW Mode
+            </button>
+            <button class="mode-button" id="nsfw-mode" onclick="setMode('nsfw')">
+              18+ Mode
+            </button>
+          </div>
+          <p class="mode-description" id="mode-description">
+            Family-friendly personality quiz
+          </p>
+
           <button class="start-button" onclick="startQuiz()">
             Take the Test
           </button>
@@ -54,6 +67,11 @@
               <div class="trait-icon">🌲</div>
               <h3>Environment</h3>
               <p>Does the call of the wild excite you, or do you prefer cozy indoor comforts?</p>
+            </div>
+            <div class="trait-card nsfw-only hidden" id="intimacy-trait-card">
+              <div class="trait-icon">🔥</div>
+              <h3>Intimacy Style</h3>
+              <p>Are you dominant and in control, or do you prefer to submit and follow?</p>
             </div>
           </div>
         </div>
@@ -99,6 +117,7 @@
         <div class="results-container">
           <div class="results-header" id="results-header">
             <span class="result-emoji" id="result-emoji"></span>
+            <p class="result-adjective nsfw-only hidden" id="result-adjective"></p>
             <h1 class="result-name" id="result-name"></h1>
             <p class="result-tagline" id="result-tagline"></p>
           </div>
@@ -112,6 +131,11 @@
             <section class="result-section">
               <h2>Your Traits</h2>
               <div class="traits-list" id="result-traits"></div>
+            </section>
+
+            <section class="result-section nsfw-only hidden" id="intimacy-section">
+              <h2>Your Intimacy Style</h2>
+              <p class="description" id="intimacy-description"></p>
             </section>
 
             <div class="two-column">
