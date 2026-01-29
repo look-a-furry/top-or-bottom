@@ -469,6 +469,9 @@ function startQuiz() {
   isTransitioning = false;
   currentAdjective = null;
 
+  // Ensure activeQuestions is correctly set based on current mode
+  activeQuestions = isNsfwMode ? [...questions, ...nsfwQuestions] : questions;
+
   showPage('quiz');
   renderQuestion();
 }
@@ -739,6 +742,8 @@ async function shareResult() {
 // Go back home
 function goHome() {
   showPage('landing');
+  // Re-sync the mode UI to ensure buttons reflect current state
+  setMode(isNsfwMode ? 'nsfw' : 'sfw');
 }
 
 // Initialize on page load
