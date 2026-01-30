@@ -2,37 +2,31 @@
 const personalityAdjectives = {
   "dominant": {
     name: "Dominant",
-    emoji: "👑",
     description: "You naturally take charge in intimate situations. You enjoy being in control, setting the pace, and guiding your partner. Your confidence and assertiveness make you a natural leader in the bedroom.",
     traits: ["Assertive", "Confident", "Protective", "In Control", "Commanding"]
   },
   "submissive": {
     name: "Submissive",
-    emoji: "🦋",
     description: "You find pleasure in surrendering control to a trusted partner. You enjoy being guided, following directions, and letting someone else take the lead. Your trust and openness create deep connections.",
     traits: ["Trusting", "Receptive", "Devoted", "Yielding", "Responsive"]
   },
   "switch": {
     name: "Switch",
-    emoji: "🔄",
     description: "You're versatile and adaptable, equally comfortable taking charge or surrendering control depending on your mood and partner. Your flexibility makes you an exciting and unpredictable partner.",
     traits: ["Versatile", "Adaptable", "Balanced", "Intuitive", "Dynamic"]
   },
   "kinky": {
     name: "Kinky",
-    emoji: "⛓️",
     description: "You have an adventurous spirit when it comes to intimacy. You're curious about exploring beyond the conventional and enjoy trying new things that push boundaries in exciting ways.",
     traits: ["Adventurous", "Curious", "Open-minded", "Creative", "Daring"]
   },
   "vanilla": {
     name: "Vanilla",
-    emoji: "🌸",
     description: "You appreciate intimate connections that focus on emotional depth and traditional expressions of affection. You value romance, tenderness, and meaningful connection over novelty.",
     traits: ["Romantic", "Tender", "Sensual", "Affectionate", "Intimate"]
   },
   "playful": {
     name: "Playful",
-    emoji: "😈",
     description: "You bring a sense of fun and lightheartedness to intimate moments. You enjoy teasing, games, and keeping things exciting with humor and spontaneity.",
     traits: ["Teasing", "Fun-loving", "Spontaneous", "Mischievous", "Lighthearted"]
   }
@@ -43,7 +37,8 @@ const personalityTypes = {
   "PYW": {
     id: "PYW",
     name: "Wolf",
-    emoji: "🐺",
+    image: "img/wolf_by_sorakirby_&_pastelwolf.webp",
+    credit: "sorakirby & pastelwolf",
     tagline: "The Pack Leader",
     description: "You're a natural born leader with boundless energy and a wild spirit! Wolves thrive in social settings where they can rally others toward exciting adventures. You're fiercely loyal to your pack and always ready to explore new territories together. Your enthusiasm is contagious, and others naturally look to you for direction and motivation.",
     traits: ["Social", "Energetic", "Adventurous", "Loyal", "Protective"],
@@ -56,7 +51,8 @@ const personalityTypes = {
   "PYZ": {
     id: "PYZ",
     name: "Dog",
-    emoji: "🐕",
+    image: "img/dog_by_Elutaru.webp",
+    credit: "Elutaru",
     tagline: "The Loyal Companion",
     description: "You're the ultimate friend everyone wishes they had! Dogs are social butterflies who bring joy and playfulness wherever they go. You love being surrounded by your favorite people in comfortable, familiar spaces. Your enthusiasm for life is matched only by your dedication to those you care about.",
     traits: ["Friendly", "Playful", "Loyal", "Affectionate", "Optimistic"],
@@ -69,7 +65,8 @@ const personalityTypes = {
   "PCW": {
     id: "PCW",
     name: "Bear",
-    emoji: "🐻",
+    image: "img/bear_by_deadstraybear.webp",
+    credit: "deadstraybear",
     tagline: "The Gentle Giant",
     description: "You possess a rare combination of strength and serenity. Bears are social creatures who prefer meaningful connections over superficial ones. You love exploring the great outdoors with close friends, taking time to appreciate nature's beauty. Your calm presence makes others feel safe and protected.",
     traits: ["Strong", "Protective", "Patient", "Nature-loving", "Thoughtful"],
@@ -82,7 +79,8 @@ const personalityTypes = {
   "PCZ": {
     id: "PCZ",
     name: "Red Panda",
-    emoji: "🦊",
+    image: "img/redpanda_by_cinnamonspots.webp",
+    credit: "cinnamonspots",
     tagline: "The Cozy Curator",
     description: "You're the master of creating warm, welcoming spaces where friends can relax and be themselves. Red Pandas enjoy gentle social gatherings in comfortable settings. You have a talent for making everyone feel at ease with your calm demeanor and thoughtful nature. Quality time with loved ones is your favorite activity.",
     traits: ["Gentle", "Welcoming", "Thoughtful", "Cozy", "Caring"],
@@ -95,7 +93,8 @@ const personalityTypes = {
   "SYW": {
     id: "SYW",
     name: "Fox",
-    emoji: "🦊",
+    image: "img/fox_by_moozleart.webp",
+    credit: "moozleart",
     tagline: "The Clever Trickster",
     description: "You're quick-witted, curious, and always on the move! Foxes are independent spirits who love exploring and discovering new things on their own terms. You have a playful side that comes out when you're comfortable, but you value your freedom above all else. Your cleverness and adaptability help you thrive in any situation.",
     traits: ["Clever", "Independent", "Curious", "Adaptable", "Mischievous"],
@@ -108,7 +107,8 @@ const personalityTypes = {
   "SYZ": {
     id: "SYZ",
     name: "Cat",
-    emoji: "🐱",
+    image: "img/tiger_by_unknown.webp",
+    credit: "unknown",
     tagline: "The Independent Spirit",
     description: "You march to the beat of your own drum, and that's exactly how you like it! Cats are playful yet selective about their company, preferring cozy indoor spaces where they can do their own thing. You have bursts of energy followed by peaceful relaxation. Those lucky enough to earn your trust get to see your affectionate side.",
     traits: ["Independent", "Playful", "Selective", "Graceful", "Mysterious"],
@@ -121,7 +121,8 @@ const personalityTypes = {
   "SCW": {
     id: "SCW",
     name: "Owl",
-    emoji: "🦉",
+    image: "img/owl_by_pulexart.webp",
+    credit: "pulexart",
     tagline: "The Wise Observer",
     description: "You see what others miss. Owls are thoughtful individuals who prefer observing from a quiet vantage point, taking in the world's mysteries. You value solitude and deep thinking, often coming up with insights that surprise others. Nature calls to you, especially during the peaceful hours when others are asleep.",
     traits: ["Wise", "Observant", "Thoughtful", "Mysterious", "Independent"],
@@ -134,7 +135,8 @@ const personalityTypes = {
   "SCZ": {
     id: "SCZ",
     name: "Rabbit",
-    emoji: "🐰",
+    image: "img/bunny_by_spookyfoxinc.webp",
+    credit: "spookyfoxinc",
     tagline: "The Gentle Dreamer",
     description: "You find magic in life's simple pleasures. Rabbits are gentle souls who cherish peace, comfort, and quiet moments of contentment. You prefer your own cozy space where you can relax without pressure. Though you may seem shy at first, you have a rich inner world and form deep bonds with those patient enough to know you.",
     traits: ["Gentle", "Peaceful", "Dreamy", "Sensitive", "Content"],
@@ -438,7 +440,8 @@ function populateTypeGrid() {
     card.className = 'type-card';
     card.style.background = type.gradient;
     card.innerHTML = `
-      <span class="type-emoji">${type.emoji}</span>
+      <img class="type-emoji" src="${type.image}" alt="${type.name}">
+      <span class="type-credit">credit: ${type.credit}</span>
       <span class="type-name">${type.name}</span>
       <span class="type-tagline">${type.tagline}</span>
     `;
@@ -624,7 +627,7 @@ function showResults(typeId, adjectiveId = null) {
 
   // Update header
   document.getElementById('results-header').style.background = personality.gradient;
-  document.getElementById('result-emoji').textContent = personality.emoji;
+  document.getElementById('result-emoji').innerHTML = `<img class="result-emoji-img" src="${personality.image}" alt="${personality.name}"><span class="result-credit">credit: ${personality.credit}</span>`;
 
   // Update name with adjective if in NSFW mode
   const resultAdjective = document.getElementById('result-adjective');
@@ -632,7 +635,7 @@ function showResults(typeId, adjectiveId = null) {
 
   if (isNsfwMode && adjective) {
     document.getElementById('result-name').textContent = `You're a ${adjective.name} ${personality.name}!`;
-    resultAdjective.textContent = `${adjective.emoji} ${adjective.name}`;
+    resultAdjective.textContent = adjective.name;
     resultAdjective.classList.remove('hidden');
     intimacySection.classList.remove('hidden');
     document.getElementById('intimacy-description').textContent = adjective.description;
@@ -697,7 +700,7 @@ function showResults(typeId, adjectiveId = null) {
       card.className = 'compatible-card';
       card.style.background = compatType.gradient;
       card.innerHTML = `
-        <span class="compatible-emoji">${compatType.emoji}</span>
+        <img class="compatible-emoji" src="${compatType.image}" alt="${compatType.name}">
         <span class="compatible-name">${compatType.name}</span>
       `;
       compatibleContainer.appendChild(card);
