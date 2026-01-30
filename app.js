@@ -365,7 +365,8 @@ const nsfwQuestions = [
       { text: "I love giving commands and praise", score: 2 },
       { text: "I enjoy playful teasing back and forth", score: 0 },
       { text: "I like hearing how much I'm wanted", score: -1 },
-      { text: "I prefer soft whispers and sweet words", score: -1, kink: -1 }
+      { text: "I prefer soft whispers and sweet words", score: -1, kink: -1 },
+      { text: "Words aren't needed - actions speak louder", score: 0 }
     ]
   },
   {
@@ -396,6 +397,7 @@ const landingPage = document.getElementById('landing-page');
 const quizPage = document.getElementById('quiz-page');
 const resultsPage = document.getElementById('results-page');
 const detailPage = document.getElementById('detail-page');
+const methodologyPage = document.getElementById('methodology-page');
 
 // Initialize the app
 function init() {
@@ -455,6 +457,7 @@ function showPage(pageName) {
   quizPage.classList.add('hidden');
   resultsPage.classList.add('hidden');
   detailPage.classList.add('hidden');
+  methodologyPage.classList.add('hidden');
 
   if (pageName === 'landing') {
     landingPage.classList.remove('hidden');
@@ -464,6 +467,8 @@ function showPage(pageName) {
     resultsPage.classList.remove('hidden');
   } else if (pageName === 'detail') {
     detailPage.classList.remove('hidden');
+  } else if (pageName === 'methodology') {
+    methodologyPage.classList.remove('hidden');
   }
 
   window.scrollTo(0, 0);
@@ -807,6 +812,17 @@ function showTypeDetail(typeId) {
   });
 
   showPage('detail');
+}
+
+// Show methodology / how results are calculated page
+function showMethodology() {
+  const nsfwSection = document.getElementById('methodology-nsfw');
+  if (isNsfwMode) {
+    nsfwSection.classList.remove('hidden');
+  } else {
+    nsfwSection.classList.add('hidden');
+  }
+  showPage('methodology');
 }
 
 // Go back home
