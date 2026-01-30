@@ -414,7 +414,7 @@ function setMode(mode) {
   if (isNsfwMode) {
     sfwButton.classList.remove('active');
     nsfwButton.classList.add('active');
-    modeDescription.textContent = '🔥 Includes spicy questions about intimacy preferences';
+    modeDescription.textContent = 'Includes spicy questions about sexual preferences';
     modeDescription.classList.add('nsfw-active');
     intimacyTraitCard.classList.remove('hidden');
     activeQuestions = [...questions, ...nsfwQuestions];
@@ -494,13 +494,13 @@ function renderQuestion() {
   // Update trait indicator
   const traitIndicator = document.getElementById('trait-indicator');
   if (question.axis === 'social') {
-    traitIndicator.textContent = '👥 Social Style';
+    traitIndicator.textContent = 'Social Style';
   } else if (question.axis === 'energy') {
-    traitIndicator.textContent = '⚡ Energy Level';
+    traitIndicator.textContent = 'Energy Level';
   } else if (question.axis === 'nature') {
-    traitIndicator.textContent = '🌲 Environment';
+    traitIndicator.textContent = 'Environment';
   } else if (question.axis === 'intimacy') {
-    traitIndicator.textContent = '🔥 Intimacy Style';
+    traitIndicator.textContent = 'Intimacy Style';
   }
 
   // Render answers
