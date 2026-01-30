@@ -72,11 +72,134 @@
               <p>Are you dominant and in control, or do you prefer to submit and follow?</p>
             </div>
           </div>
+          <p class="how-it-works-link">
+            Curious about the math? <a href="#" onclick="showMethodology(); return false;">See how results are calculated</a>
+          </p>
         </div>
 
         <footer class="landing-footer">
           <p>Made by ranfur</p>
         </footer>
+      </div>
+    </div>
+
+    <!-- Methodology Page -->
+    <div id="methodology-page" class="page hidden">
+      <div class="results">
+        <div class="results-container">
+          <div class="results-header" style="background: linear-gradient(135deg, #334155 0%, #475569 50%, #64748b 100%);">
+            <h1 class="result-name">How Results Are Calculated</h1>
+            <p class="result-tagline">The scoring system behind your personality type</p>
+          </div>
+
+          <div class="results-content">
+            <section class="result-section">
+              <h2>The Three Axes (SFW)</h2>
+              <p class="description">
+                The quiz measures your personality across three independent axes.
+                Each axis has 4 questions with answers scored from +2 to -2. Your
+                total score on each axis determines which side you fall on.
+              </p>
+              <div class="methodology-axes">
+                <div class="methodology-axis">
+                  <h3>Social Style</h3>
+                  <div class="axis-bar">
+                    <span class="axis-end axis-positive">Pack (P)</span>
+                    <div class="axis-track"><div class="axis-midpoint"></div></div>
+                    <span class="axis-end axis-negative">Solitary (S)</span>
+                  </div>
+                  <p>Score &ge; 0 = Pack &bull; Score &lt; 0 = Solitary</p>
+                </div>
+                <div class="methodology-axis">
+                  <h3>Energy Level</h3>
+                  <div class="axis-bar">
+                    <span class="axis-end axis-positive">Playful (Y)</span>
+                    <div class="axis-track"><div class="axis-midpoint"></div></div>
+                    <span class="axis-end axis-negative">Calm (C)</span>
+                  </div>
+                  <p>Score &ge; 0 = Playful &bull; Score &lt; 0 = Calm</p>
+                </div>
+                <div class="methodology-axis">
+                  <h3>Environment</h3>
+                  <div class="axis-bar">
+                    <span class="axis-end axis-positive">Wild (W)</span>
+                    <div class="axis-track"><div class="axis-midpoint"></div></div>
+                    <span class="axis-end axis-negative">Cozy (Z)</span>
+                  </div>
+                  <p>Score &ge; 0 = Wild &bull; Score &lt; 0 = Cozy</p>
+                </div>
+              </div>
+            </section>
+
+            <section class="result-section">
+              <h2>The 8 Personality Types</h2>
+              <p class="description">
+                Your three axis letters combine into a 3-letter code that maps to one of 8 furry personality types:
+              </p>
+              <div class="methodology-type-table">
+                <div class="methodology-type-row header">
+                  <span>Code</span><span>Type</span><span>Social</span><span>Energy</span><span>Nature</span>
+                </div>
+                <div class="methodology-type-row"><span>PYW</span><span>Wolf</span><span>Pack</span><span>Playful</span><span>Wild</span></div>
+                <div class="methodology-type-row"><span>PYZ</span><span>Dog</span><span>Pack</span><span>Playful</span><span>Cozy</span></div>
+                <div class="methodology-type-row"><span>PCW</span><span>Bear</span><span>Pack</span><span>Calm</span><span>Wild</span></div>
+                <div class="methodology-type-row"><span>PCZ</span><span>Red Panda</span><span>Pack</span><span>Calm</span><span>Cozy</span></div>
+                <div class="methodology-type-row"><span>SYW</span><span>Fox</span><span>Solitary</span><span>Playful</span><span>Wild</span></div>
+                <div class="methodology-type-row"><span>SYZ</span><span>Cat</span><span>Solitary</span><span>Playful</span><span>Cozy</span></div>
+                <div class="methodology-type-row"><span>SCW</span><span>Owl</span><span>Solitary</span><span>Calm</span><span>Wild</span></div>
+                <div class="methodology-type-row"><span>SCZ</span><span>Rabbit</span><span>Solitary</span><span>Calm</span><span>Cozy</span></div>
+              </div>
+            </section>
+
+            <section class="result-section nsfw-only hidden" id="methodology-nsfw">
+              <h2>Intimacy Adjective (18+ Mode)</h2>
+              <p class="description">
+                In 18+ mode, 8 additional questions measure two extra dimensions:
+                an <strong>intimacy</strong> score (dominant vs submissive) and a
+                <strong>kink</strong> score. These combine to produce one of 6
+                adjectives that prefix your personality type.
+              </p>
+              <div class="methodology-adjective-grid">
+                <div class="methodology-adjective">
+                  <h3>Dominant</h3>
+                  <p>Intimacy &ge; 2, kink between -3 and 3</p>
+                </div>
+                <div class="methodology-adjective">
+                  <h3>Submissive</h3>
+                  <p>Intimacy &le; -2, kink between -3 and 3</p>
+                </div>
+                <div class="methodology-adjective">
+                  <h3>Switch</h3>
+                  <p>Intimacy between -1 and 1, kink between -3 and 3</p>
+                </div>
+                <div class="methodology-adjective">
+                  <h3>Kinky</h3>
+                  <p>Kink &ge; 3 (at any intimacy level)</p>
+                </div>
+                <div class="methodology-adjective">
+                  <h3>Vanilla</h3>
+                  <p>Kink &le; -3 (when intimacy is between -5 and 1)</p>
+                </div>
+                <div class="methodology-adjective">
+                  <h3>Playful</h3>
+                  <p>Defined but not currently assigned by the scoring logic</p>
+                </div>
+              </div>
+              <p class="description" style="margin-top: 1rem;">
+                The kink score acts as an override: high kink always yields
+                <strong>Kinky</strong> regardless of dom/sub position, while very
+                low kink yields <strong>Vanilla</strong> for mid-range intimacy
+                scores.
+              </p>
+            </section>
+
+            <div class="actions">
+              <button class="home-button" onclick="goHome()">
+                Back Home
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
