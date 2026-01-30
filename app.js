@@ -2,37 +2,31 @@
 const personalityAdjectives = {
   "dominant": {
     name: "Dominant",
-    emoji: "👑",
     description: "You naturally take charge in intimate situations. You enjoy being in control, setting the pace, and guiding your partner. Your confidence and assertiveness make you a natural leader in the bedroom.",
     traits: ["Assertive", "Confident", "Protective", "In Control", "Commanding"]
   },
   "submissive": {
     name: "Submissive",
-    emoji: "🦋",
     description: "You find pleasure in surrendering control to a trusted partner. You enjoy being guided, following directions, and letting someone else take the lead. Your trust and openness create deep connections.",
     traits: ["Trusting", "Receptive", "Devoted", "Yielding", "Responsive"]
   },
   "switch": {
     name: "Switch",
-    emoji: "🔄",
     description: "You're versatile and adaptable, equally comfortable taking charge or surrendering control depending on your mood and partner. Your flexibility makes you an exciting and unpredictable partner.",
     traits: ["Versatile", "Adaptable", "Balanced", "Intuitive", "Dynamic"]
   },
   "kinky": {
     name: "Kinky",
-    emoji: "⛓️",
     description: "You have an adventurous spirit when it comes to intimacy. You're curious about exploring beyond the conventional and enjoy trying new things that push boundaries in exciting ways.",
     traits: ["Adventurous", "Curious", "Open-minded", "Creative", "Daring"]
   },
   "vanilla": {
     name: "Vanilla",
-    emoji: "🌸",
     description: "You appreciate intimate connections that focus on emotional depth and traditional expressions of affection. You value romance, tenderness, and meaningful connection over novelty.",
     traits: ["Romantic", "Tender", "Sensual", "Affectionate", "Intimate"]
   },
   "playful": {
     name: "Playful",
-    emoji: "😈",
     description: "You bring a sense of fun and lightheartedness to intimate moments. You enjoy teasing, games, and keeping things exciting with humor and spontaneity.",
     traits: ["Teasing", "Fun-loving", "Spontaneous", "Mischievous", "Lighthearted"]
   }
@@ -43,7 +37,6 @@ const personalityTypes = {
   "PYW": {
     id: "PYW",
     name: "Wolf",
-    emoji: "🐺",
     image: "img/wolf_by_sorakirby_&_pastelwolf.webp",
     credit: "sorakirby & pastelwolf",
     tagline: "The Pack Leader",
@@ -58,7 +51,6 @@ const personalityTypes = {
   "PYZ": {
     id: "PYZ",
     name: "Dog",
-    emoji: "🐕",
     image: "img/dog_by_Elutaru.webp",
     credit: "Elutaru",
     tagline: "The Loyal Companion",
@@ -73,7 +65,6 @@ const personalityTypes = {
   "PCW": {
     id: "PCW",
     name: "Bear",
-    emoji: "🐻",
     image: "img/bear_by_deadstraybear.webp",
     credit: "deadstraybear",
     tagline: "The Gentle Giant",
@@ -88,7 +79,6 @@ const personalityTypes = {
   "PCZ": {
     id: "PCZ",
     name: "Red Panda",
-    emoji: "🦊",
     image: "img/redpanda_by_cinnamonspots.webp",
     credit: "cinnamonspots",
     tagline: "The Cozy Curator",
@@ -103,7 +93,6 @@ const personalityTypes = {
   "SYW": {
     id: "SYW",
     name: "Fox",
-    emoji: "🦊",
     image: "img/fox_by_moozleart.webp",
     credit: "moozleart",
     tagline: "The Clever Trickster",
@@ -118,7 +107,6 @@ const personalityTypes = {
   "SYZ": {
     id: "SYZ",
     name: "Cat",
-    emoji: "🐱",
     image: "img/tiger_by_unknown.webp",
     credit: "unknown",
     tagline: "The Independent Spirit",
@@ -133,7 +121,6 @@ const personalityTypes = {
   "SCW": {
     id: "SCW",
     name: "Owl",
-    emoji: "🦉",
     image: "img/owl_by_pulexart.webp",
     credit: "pulexart",
     tagline: "The Wise Observer",
@@ -148,7 +135,6 @@ const personalityTypes = {
   "SCZ": {
     id: "SCZ",
     name: "Rabbit",
-    emoji: "🐰",
     image: "img/bunny_by_spookyfoxinc.webp",
     credit: "spookyfoxinc",
     tagline: "The Gentle Dreamer",
@@ -649,7 +635,7 @@ function showResults(typeId, adjectiveId = null) {
 
   if (isNsfwMode && adjective) {
     document.getElementById('result-name').textContent = `You're a ${adjective.name} ${personality.name}!`;
-    resultAdjective.textContent = `${adjective.emoji} ${adjective.name}`;
+    resultAdjective.textContent = adjective.name;
     resultAdjective.classList.remove('hidden');
     intimacySection.classList.remove('hidden');
     document.getElementById('intimacy-description').textContent = adjective.description;
