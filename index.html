@@ -1,349 +1,231 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Furry Personality Test</title>
-  <link rel="stylesheet" href="styles.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>sergal.social — Welcome</title>
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+  <meta name="description" content="sergal.social — a simple, elegant landing page." />
+  <meta name="theme-color" content="#0f172a" />
+  <meta property="og:title" content="sergal.social" />
+  <meta property="og:description" content="A cozy corner on the web. Join us on Telegram." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="data:image/svg+xml;utf8,<?xml version='1.0' encoding='UTF-8'?> <svg xmlns='http://www.w3.org/2000/svg' width='1200' height='630'><rect width='100%' height='100%' fill='%2316223a'/><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' fill='%23e2e8f0' font-family='system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif' font-size='48'>sergal.social</text></svg>" />
+  <style>
+    :root{
+      --bg: #0b1220; /* base */
+      --bg-elev: #101a2e; /* elevated cards */
+      --fg: #e6eefc; /* primary text */
+      --muted: #a9b4c7; /* secondary text */
+      --brand: #6ee7ff; /* accent */
+      --brand-2: #a78bfa; /* secondary accent */
+      --ring: rgba(110, 231, 255, 0.45);
+      --radius: 18px;
+      --shadow: 0 10px 30px rgba(0,0,0,.35), 0 6px 12px rgba(0,0,0,.25);
+    }
+
+    * { box-sizing: border-box; }
+    html,body{ height:100%; }
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      color: var(--fg);
+      background:
+        radial-gradient(900px 600px at 10% -10%, rgba(103, 232, 249, .15), transparent 60%),
+        radial-gradient(1200px 700px at 110% 10%, rgba(167, 139, 250, .15), transparent 60%),
+        linear-gradient(180deg, #0b1220 0%, #0b1220 40%, #0f1627 100%);
+      background-attachment: fixed;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    .wrap{
+      min-height: 100dvh;
+      display: grid;
+      place-items: center;
+      padding: 24px;
+    }
+
+    .container{
+      width: min(1100px, 100%);
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 28px;
+      align-items: center;
+    }
+
+    header{
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .logo{
+      display:inline-grid; place-items:center;
+      width: 48px; height: 48px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--brand), var(--brand-2));
+      box-shadow: inset 0 0 20px rgba(255,255,255,.12), 0 6px 20px rgba(103, 232, 249, .3);
+      font-weight: 800; color:#0b1220;
+      letter-spacing: .5px;
+    }
+
+    h1{
+      font-size: clamp(28px, 4vw, 48px);
+      margin: 0;
+      line-height: 1.1;
+    }
+
+    .tagline{ color: var(--muted); margin-top: 6px; font-size: clamp(14px, 1.5vw, 18px); }
+
+    .hero{
+      display: grid;
+      gap: 28px;
+      grid-template-columns: 1fr;
+    }
+
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .hero-card{ padding: 24px; }
+
+    .img-wrap{
+      display: grid; place-items: center;
+    }
+
+    .placeholder{
+      width: 100%;
+      max-width: 500px; /* required size */
+      aspect-ratio: 1 / 1;
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1px dashed rgba(255,255,255,.15);
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.04);
+    }
+
+    .cta-row{
+      display: flex; flex-wrap: wrap; gap: 14px; align-items: center;
+    }
+
+    .btn{
+      appearance: none; border: 0; cursor: pointer;
+      padding: 12px 18px; border-radius: 14px;
+      color: #0b1220; font-weight: 700; letter-spacing: .3px;
+      background: linear-gradient(135deg, var(--brand), var(--brand-2));
+      box-shadow: 0 8px 24px rgba(103, 232, 249, .35);
+      transition: transform .12s ease, box-shadow .2s ease, filter .2s ease;
+    }
+    .btn:hover{ transform: translateY(-2px); filter: saturate(1.1); }
+    .btn:focus{ outline: none; box-shadow: 0 0 0 6px var(--ring); }
+
+    .grid{
+      display: grid; gap: 20px; grid-template-columns: 1fr; align-items: start;
+    }
+
+    .tg-card{
+      padding: 18px; display:flex; align-items:center; gap:14px;
+    }
+
+    .tg-icon{
+      width: 42px; height: 42px; border-radius: 50%;
+      display: grid; place-items: center;
+      background: #229ED9; /* Telegram brand */
+      box-shadow: 0 8px 20px rgba(34, 158, 217, .35);
+      flex: 0 0 42px;
+    }
+
+    .tg-content{ display:grid; gap:4px; }
+    .eyebrow{ font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+
+    .handle{ font-size: 18px; font-weight: 700; }
+    .handle a{ color: var(--fg); text-decoration: none; border-bottom: 1px dotted rgba(255,255,255,.25); }
+    .handle a:hover{ border-bottom-style: solid; }
+
+    footer{ color: var(--muted); font-size: 13px; text-align: center; padding: 22px 8px; }
+
+    @media (min-width: 860px){
+      .container{ grid-template-columns: 1.15fr .85fr; }
+      .hero{ grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
 <body>
-  <div id="app">
-    <!-- Landing Page -->
-    <div id="landing-page" class="page">
-      <div class="landing">
-        <div class="landing-hero">
-          <h1 class="landing-title">
-            <span class="title-emoji"></span>
-            What's Your Furry Personality?
-            <span class="title-emoji"></span>
-          </h1>
-          <p class="landing-subtitle">
-            Discover your inner furry personality type with this fun quiz!
+  <div class="wrap">
+    <main class="container">
+      <section class="hero">
+        <header>
+          <div class="logo" aria-hidden="true">S</div>
+          <div>
+            <h1>sergal.social</h1>
+            <p class="tagline">Your cute local sergal.</p>
+          </div>
+        </header>
+        
+
+        <article class="card hero-card" role="region" aria-label="About sergal.social">
+          <p style="margin:0 0 16px 0; color:var(--muted); max-width:65ch">
+            Hello! I'm Randy, a cute, buff, horny sergal, you can find me on telegram, or you can send me an email, if you're interested in contacting me!
           </p>
-          <p class="landing-description">
-            Answer 20 simple questions to find out which of 8 furry archetypes
-            matches your personality best. Are you a loyal Wolf, a clever Fox,
-            or perhaps a cozy Rabbit?
+          <div class="cta-row">
+            <a class="btn" href="https://t.me/ranfur8" aria-label="Jump to Telegram card" target="_blank">Find me on Telegram</a>
+            <a class="btn" href="mailto:hello@sergal.social" aria-label="Email sergal.social">Email me</a>
+          </div>
+        </article>
+
+        <div class="grid">
+          <section id="telegram" class="card tg-card" role="region" aria-label="Telegram contact">
+            <div class="tg-icon" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M22 3L2.9 10.3c-.7.3-.7 1.3 0 1.5l4.8 1.6 1.9 6.1c.2.7 1.1.8 1.5.2l2.8-3.4 4.9 3.6c.6.4 1.4.1 1.6-.6L23.8 4.2C24 3.4 22.9 2.7 22 3z" fill="white"/>
+              </svg>
+            </div>
+            <div class="tg-content">
+              <span class="eyebrow">Telegram</span>
+              <div class="handle">
+                <a id="tgLink" href="https://t.me/ranfur8" target="_blank" rel="noopener">@ranfur8</a>
+              </div>
+              <small style="color:var(--muted)">Tap to open in Telegram</small>
+            </div>
+          </section>
+        </div>
+        <article class="card hero-card" role="region" aria-label="About sergal.social">
+          <p style="margin:0 0 16px 0; color:var(--muted); max-width:65ch">
+            Take my furry personality test!
           </p>
-
-          <div class="mode-toggle">
-            <span class="mode-label">SFW</span>
-            <label class="toggle-switch" id="mode-switch">
-              <input type="checkbox" id="nsfw-toggle" onchange="setMode(this.checked ? 'nsfw' : 'sfw')" checked>
-              <span class="toggle-slider"></span>
-            </label>
-            <span class="mode-label">18+</span>
+          <div class="cta-row">
+            <a class="btn" href="/top-or-bottom" aria-label="Go to test page" target="_blank">Go to test page</a>
           </div>
-          <p class="mode-description" id="mode-description"></p>
+        </article>
+      </section>
 
-          <button class="start-button" onclick="startQuiz()">
-            Take the Test
-          </button>
-        </div>
+      <aside class="img-wrap">
+        <figure class="placeholder card" aria-label="Logo placeholder 500 by 500">
+          <img src="./logo.png" alt="sergal.social logo" width="500" height="500" loading="eager" />
+        </figure>
+      </aside>
+    </main>
 
-        <div class="personality-preview">
-          <h2 class="preview-title">The 8 Personality Types</h2>
-          <div class="type-grid" id="type-grid">
-            <!-- Types will be populated by JavaScript -->
-          </div>
-        </div>
-
-        <div class="traits-section">
-          <h2 class="traits-title">How It Works</h2>
-          <div class="traits-grid">
-            <div class="trait-card">
-              <div class="trait-icon"></div>
-              <h3>Social Style</h3>
-              <p>Are you a pack animal who thrives in groups, or a solitary soul who values independence?</p>
-            </div>
-            <div class="trait-card">
-              <div class="trait-icon"></div>
-              <h3>Energy Level</h3>
-              <p>Do you bounce off the walls with playful energy, or radiate calm and thoughtful vibes?</p>
-            </div>
-            <div class="trait-card">
-              <div class="trait-icon"></div>
-              <h3>Environment</h3>
-              <p>Does the call of the wild excite you, or do you prefer cozy indoor comforts?</p>
-            </div>
-            <div class="trait-card nsfw-only hidden" id="intimacy-trait-card">
-              <div class="trait-icon"></div>
-              <h3>Intimacy Style</h3>
-              <p>Are you dominant and in control, or do you prefer to submit and follow?</p>
-            </div>
-          </div>
-          <p class="how-it-works-link">
-            Curious about the math? <a href="#" onclick="showMethodology(); return false;">See how results are calculated</a>
-          </p>
-        </div>
-
-        <footer class="landing-footer">
-          <p>Made by ranfur</p>
-        </footer>
-      </div>
-    </div>
-
-    <!-- Methodology Page -->
-    <div id="methodology-page" class="page hidden">
-      <div class="results">
-        <div class="results-container">
-          <div class="results-header" style="background: linear-gradient(135deg, #334155 0%, #475569 50%, #64748b 100%);">
-            <h1 class="result-name">How Results Are Calculated</h1>
-            <p class="result-tagline">The scoring system behind your personality type</p>
-          </div>
-
-          <div class="results-content">
-            <section class="result-section">
-              <h2>The Three Axes (SFW)</h2>
-              <p class="description">
-                The quiz measures your personality across three independent axes.
-                Each axis has 4 questions with answers scored from +2 to -2. Your
-                total score on each axis determines which side you fall on.
-              </p>
-              <div class="methodology-axes">
-                <div class="methodology-axis">
-                  <h3>Social Style</h3>
-                  <div class="axis-bar">
-                    <span class="axis-end axis-positive">Pack (P)</span>
-                    <div class="axis-track"><div class="axis-midpoint"></div></div>
-                    <span class="axis-end axis-negative">Solitary (S)</span>
-                  </div>
-                  <p>Score &ge; 0 = Pack &bull; Score &lt; 0 = Solitary</p>
-                </div>
-                <div class="methodology-axis">
-                  <h3>Energy Level</h3>
-                  <div class="axis-bar">
-                    <span class="axis-end axis-positive">Playful (Y)</span>
-                    <div class="axis-track"><div class="axis-midpoint"></div></div>
-                    <span class="axis-end axis-negative">Calm (C)</span>
-                  </div>
-                  <p>Score &ge; 0 = Playful &bull; Score &lt; 0 = Calm</p>
-                </div>
-                <div class="methodology-axis">
-                  <h3>Environment</h3>
-                  <div class="axis-bar">
-                    <span class="axis-end axis-positive">Wild (W)</span>
-                    <div class="axis-track"><div class="axis-midpoint"></div></div>
-                    <span class="axis-end axis-negative">Cozy (Z)</span>
-                  </div>
-                  <p>Score &ge; 0 = Wild &bull; Score &lt; 0 = Cozy</p>
-                </div>
-              </div>
-            </section>
-
-            <section class="result-section">
-              <h2>The 8 Personality Types</h2>
-              <p class="description">
-                Your three axis letters combine into a 3-letter code that maps to one of 8 furry personality types:
-              </p>
-              <div class="methodology-type-table">
-                <div class="methodology-type-row header">
-                  <span>Code</span><span>Type</span><span>Social</span><span>Energy</span><span>Nature</span>
-                </div>
-                <div class="methodology-type-row"><span>PYW</span><span>Wolf</span><span>Pack</span><span>Playful</span><span>Wild</span></div>
-                <div class="methodology-type-row"><span>PYZ</span><span>Dog</span><span>Pack</span><span>Playful</span><span>Cozy</span></div>
-                <div class="methodology-type-row"><span>PCW</span><span>Bear</span><span>Pack</span><span>Calm</span><span>Wild</span></div>
-                <div class="methodology-type-row"><span>PCZ</span><span>Red Panda</span><span>Pack</span><span>Calm</span><span>Cozy</span></div>
-                <div class="methodology-type-row"><span>SYW</span><span>Fox</span><span>Solitary</span><span>Playful</span><span>Wild</span></div>
-                <div class="methodology-type-row"><span>SYZ</span><span>Cat</span><span>Solitary</span><span>Playful</span><span>Cozy</span></div>
-                <div class="methodology-type-row"><span>SCW</span><span>Owl</span><span>Solitary</span><span>Calm</span><span>Wild</span></div>
-                <div class="methodology-type-row"><span>SCZ</span><span>Rabbit</span><span>Solitary</span><span>Calm</span><span>Cozy</span></div>
-              </div>
-            </section>
-
-            <section class="result-section nsfw-only hidden" id="methodology-nsfw">
-              <h2>Intimacy Adjective (18+ Mode)</h2>
-              <p class="description">
-                In 18+ mode, 8 additional questions measure two extra dimensions:
-                an <strong>intimacy</strong> score (dominant vs submissive) and a
-                <strong>kink</strong> score. These combine to produce one of 6
-                adjectives that prefix your personality type.
-              </p>
-              <div class="methodology-adjective-grid">
-                <div class="methodology-adjective">
-                  <h3>Dominant</h3>
-                  <p>Intimacy &ge; 2, kink between -3 and 3</p>
-                </div>
-                <div class="methodology-adjective">
-                  <h3>Submissive</h3>
-                  <p>Intimacy &le; -2, kink between -3 and 3</p>
-                </div>
-                <div class="methodology-adjective">
-                  <h3>Switch</h3>
-                  <p>Intimacy between -1 and 1, kink between -3 and 3</p>
-                </div>
-                <div class="methodology-adjective">
-                  <h3>Kinky</h3>
-                  <p>Kink &ge; 3 (at any intimacy level)</p>
-                </div>
-                <div class="methodology-adjective">
-                  <h3>Vanilla</h3>
-                  <p>Kink &le; -3 (when intimacy is between -5 and 1)</p>
-                </div>
-                <div class="methodology-adjective">
-                  <h3>Playful</h3>
-                  <p>Defined but not currently assigned by the scoring logic</p>
-                </div>
-              </div>
-              <p class="description" style="margin-top: 1rem;">
-                The kink score acts as an override: high kink always yields
-                <strong>Kinky</strong> regardless of dom/sub position, while very
-                low kink yields <strong>Vanilla</strong> for mid-range intimacy
-                scores.
-              </p>
-            </section>
-
-            <div class="actions">
-              <button class="home-button" onclick="goHome()">
-                Back Home
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Personality Detail Page -->
-    <div id="detail-page" class="page hidden">
-      <div class="results">
-        <div class="results-container">
-          <div class="results-header" id="detail-header">
-            <span class="result-emoji" id="detail-emoji"></span>
-            <h1 class="result-name" id="detail-name"></h1>
-            <p class="result-tagline" id="detail-tagline"></p>
-          </div>
-
-          <div class="results-content">
-            <section class="result-section">
-              <h2>About This Type</h2>
-              <p class="description" id="detail-description"></p>
-            </section>
-
-            <section class="result-section">
-              <h2>Key Traits</h2>
-              <div class="traits-list" id="detail-traits"></div>
-            </section>
-
-            <div class="two-column">
-              <section class="result-section">
-                <h2>Strengths</h2>
-                <ul class="list strengths" id="detail-strengths"></ul>
-              </section>
-
-              <section class="result-section">
-                <h2>Challenges</h2>
-                <ul class="list challenges" id="detail-challenges"></ul>
-              </section>
-            </div>
-
-            <section class="result-section compatibility">
-              <h2>Compatible With</h2>
-              <div class="compatible-types" id="detail-compatible"></div>
-            </section>
-
-            <div class="actions">
-              <button class="start-button" onclick="startQuiz()">
-                Take the Test
-              </button>
-              <button class="home-button" onclick="goHome()">
-                Back Home
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Quiz Page -->
-    <div id="quiz-page" class="page hidden">
-      <div class="quiz">
-        <div class="quiz-container">
-          <div class="quiz-header">
-            <button class="back-button" id="back-button" onclick="goBack()">
-              ← Back
-            </button>
-            <div class="question-counter" id="question-counter">
-              1 / 12
-            </div>
-          </div>
-
-          <div class="progress-bar">
-            <div class="progress-fill" id="progress-fill"></div>
-          </div>
-
-          <div class="question-card" id="question-card">
-            <h2 class="question-text" id="question-text"></h2>
-            <div class="answers" id="answers">
-              <!-- Answers will be populated by JavaScript -->
-            </div>
-          </div>
-
-          <div class="trait-indicator" id="trait-indicator"></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Results Page -->
-    <div id="results-page" class="page hidden">
-      <div class="results">
-        <div class="results-container">
-          <div class="results-header" id="results-header">
-            <span class="result-emoji" id="result-emoji"></span>
-            <p class="result-adjective nsfw-only hidden" id="result-adjective"></p>
-            <h1 class="result-name" id="result-name"></h1>
-            <p class="result-tagline" id="result-tagline"></p>
-          </div>
-
-          <div class="results-content">
-            <section class="result-section">
-              <h2>About You</h2>
-              <p class="description" id="result-description"></p>
-            </section>
-
-            <section class="result-section">
-              <h2>Your Traits</h2>
-              <div class="traits-list" id="result-traits"></div>
-            </section>
-
-            <section class="result-section nsfw-only hidden" id="intimacy-section">
-              <h2>Your Intimacy Style</h2>
-              <p class="description" id="intimacy-description"></p>
-            </section>
-
-            <div class="two-column">
-              <section class="result-section">
-                <h2>Your Strengths</h2>
-                <ul class="list strengths" id="result-strengths"></ul>
-              </section>
-
-              <section class="result-section">
-                <h2>Growth Areas</h2>
-                <ul class="list challenges" id="result-challenges"></ul>
-              </section>
-            </div>
-
-            <section class="result-section compatibility">
-              <h2>Compatible With</h2>
-              <div class="compatible-types" id="compatible-types"></div>
-            </section>
-
-            <div class="actions">
-              <button class="share-button" onclick="shareResult()">
-                Share Your Result
-              </button>
-              <button class="retake-button" onclick="startQuiz()">
-                Retake Test
-              </button>
-              <button class="home-button" onclick="goHome()">
-                Back Home
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    <footer>
+      <span>© <span id="year"></span> sergal.social · All rights reserved.</span>
+    </footer>
   </div>
 
-  <script src="app.js"></script>
+  <script>
+    // Current year and optional handle override via ?tg=
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    const params = new URLSearchParams(location.search);
+    const override = (params.get('tg') || '').trim().replace(/^@+/, '');
+    if (override) {
+      const link = document.getElementById('tgLink');
+      link.href = `https://t.me/${override}`;
+      link.textContent = `@${override}`;
+    }
+  </script>
 </body>
 </html>
