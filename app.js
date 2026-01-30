@@ -407,6 +407,7 @@ function init() {
 }
 
 // Set quiz mode (SFW or NSFW)
+// Set quiz mode (SFW or NSFW)
 function setMode(mode) {
   isNsfwMode = mode === 'nsfw';
 
@@ -414,20 +415,31 @@ function setMode(mode) {
   const modeDescription = document.getElementById('mode-description');
   const intimacyTraitCard = document.getElementById('intimacy-trait-card');
 
-  // Sync checkbox state
-  toggle.checked = isNsfwMode;
-
-  if (isNsfwMode) {
-    modeDescription.textContent = 'Includes spicy questions about intimate preferences';
-    modeDescription.classList.add('nsfw-active');
-    intimacyTraitCard.classList.remove('hidden');
-    activeQuestions = [...questions, ...nsfwQuestions];
-  } else {
-    modeDescription.textContent = 'Family-friendly personality quiz';
-    modeDescription.classList.remove('nsfw-active');
-    intimacyTraitCard.classList.add('hidden');
-    activeQuestions = questions;
+  // Sync checkbox state (only if present)
+  if (toggle) {
+    toggle.checked = isNsfwMode;
   }
+
+  if (modeDescription) {
+    if (isNsfwMode) {
+      modeDescription.textContent =
+        'Includes spicy questions about intimate preferences';
+      modeDescription.classList.add('nsfw-active');
+    } else {
+      modeDescription.textContent =
+        'Family-friendly personality quiz';
+      modeDescription.classList.remove('nsfw-active');
+    }
+  }
+
+  // This element does NOT exist on all pages — guard it
+  if (intimacyTraitCard) {
+    intimacyTraitCard.classList.toggle('hidden', !isNsfwMode);
+  }
+
+  activeQuestions = isNsfwMode
+    ? [...questions, ...nsfwQuestions]
+    : questions;
 }
 
 // Populate personality type grid on landing page
@@ -822,7 +834,7 @@ function showMethodology() {
   } else {
     nsfwSection.classList.add('hidden');
   }
-  showPage('methodology');
+  showPage('methodology-page');
 }
 
 // Go back home
