@@ -44,6 +44,8 @@ const personalityTypes = {
     id: "PYW",
     name: "Wolf",
     emoji: "🐺",
+    image: "img/wolf_by_sorakirby_&_pastelwolf.webp",
+    credit: "sorakirby & pastelwolf",
     tagline: "The Pack Leader",
     description: "You're a natural born leader with boundless energy and a wild spirit! Wolves thrive in social settings where they can rally others toward exciting adventures. You're fiercely loyal to your pack and always ready to explore new territories together. Your enthusiasm is contagious, and others naturally look to you for direction and motivation.",
     traits: ["Social", "Energetic", "Adventurous", "Loyal", "Protective"],
@@ -57,6 +59,8 @@ const personalityTypes = {
     id: "PYZ",
     name: "Dog",
     emoji: "🐕",
+    image: "img/dog_by_Elutaru.webp",
+    credit: "Elutaru",
     tagline: "The Loyal Companion",
     description: "You're the ultimate friend everyone wishes they had! Dogs are social butterflies who bring joy and playfulness wherever they go. You love being surrounded by your favorite people in comfortable, familiar spaces. Your enthusiasm for life is matched only by your dedication to those you care about.",
     traits: ["Friendly", "Playful", "Loyal", "Affectionate", "Optimistic"],
@@ -70,6 +74,8 @@ const personalityTypes = {
     id: "PCW",
     name: "Bear",
     emoji: "🐻",
+    image: "img/bear_by_deadstraybear.webp",
+    credit: "deadstraybear",
     tagline: "The Gentle Giant",
     description: "You possess a rare combination of strength and serenity. Bears are social creatures who prefer meaningful connections over superficial ones. You love exploring the great outdoors with close friends, taking time to appreciate nature's beauty. Your calm presence makes others feel safe and protected.",
     traits: ["Strong", "Protective", "Patient", "Nature-loving", "Thoughtful"],
@@ -83,6 +89,8 @@ const personalityTypes = {
     id: "PCZ",
     name: "Red Panda",
     emoji: "🦊",
+    image: "img/redpanda_by_cinnamonspots.webp",
+    credit: "cinnamonspots",
     tagline: "The Cozy Curator",
     description: "You're the master of creating warm, welcoming spaces where friends can relax and be themselves. Red Pandas enjoy gentle social gatherings in comfortable settings. You have a talent for making everyone feel at ease with your calm demeanor and thoughtful nature. Quality time with loved ones is your favorite activity.",
     traits: ["Gentle", "Welcoming", "Thoughtful", "Cozy", "Caring"],
@@ -96,6 +104,8 @@ const personalityTypes = {
     id: "SYW",
     name: "Fox",
     emoji: "🦊",
+    image: "img/fox_by_moozleart.webp",
+    credit: "moozleart",
     tagline: "The Clever Trickster",
     description: "You're quick-witted, curious, and always on the move! Foxes are independent spirits who love exploring and discovering new things on their own terms. You have a playful side that comes out when you're comfortable, but you value your freedom above all else. Your cleverness and adaptability help you thrive in any situation.",
     traits: ["Clever", "Independent", "Curious", "Adaptable", "Mischievous"],
@@ -109,6 +119,8 @@ const personalityTypes = {
     id: "SYZ",
     name: "Cat",
     emoji: "🐱",
+    image: "img/tiger_by_unknown.webp",
+    credit: "unknown",
     tagline: "The Independent Spirit",
     description: "You march to the beat of your own drum, and that's exactly how you like it! Cats are playful yet selective about their company, preferring cozy indoor spaces where they can do their own thing. You have bursts of energy followed by peaceful relaxation. Those lucky enough to earn your trust get to see your affectionate side.",
     traits: ["Independent", "Playful", "Selective", "Graceful", "Mysterious"],
@@ -122,6 +134,8 @@ const personalityTypes = {
     id: "SCW",
     name: "Owl",
     emoji: "🦉",
+    image: "img/owl_by_pulexart.webp",
+    credit: "pulexart",
     tagline: "The Wise Observer",
     description: "You see what others miss. Owls are thoughtful individuals who prefer observing from a quiet vantage point, taking in the world's mysteries. You value solitude and deep thinking, often coming up with insights that surprise others. Nature calls to you, especially during the peaceful hours when others are asleep.",
     traits: ["Wise", "Observant", "Thoughtful", "Mysterious", "Independent"],
@@ -135,6 +149,8 @@ const personalityTypes = {
     id: "SCZ",
     name: "Rabbit",
     emoji: "🐰",
+    image: "img/bunny_by_spookyfoxinc.webp",
+    credit: "spookyfoxinc",
     tagline: "The Gentle Dreamer",
     description: "You find magic in life's simple pleasures. Rabbits are gentle souls who cherish peace, comfort, and quiet moments of contentment. You prefer your own cozy space where you can relax without pressure. Though you may seem shy at first, you have a rich inner world and form deep bonds with those patient enough to know you.",
     traits: ["Gentle", "Peaceful", "Dreamy", "Sensitive", "Content"],
@@ -438,7 +454,8 @@ function populateTypeGrid() {
     card.className = 'type-card';
     card.style.background = type.gradient;
     card.innerHTML = `
-      <span class="type-emoji">${type.emoji}</span>
+      <img class="type-emoji" src="${type.image}" alt="${type.name}">
+      <span class="type-credit">credit: ${type.credit}</span>
       <span class="type-name">${type.name}</span>
       <span class="type-tagline">${type.tagline}</span>
     `;
@@ -624,7 +641,7 @@ function showResults(typeId, adjectiveId = null) {
 
   // Update header
   document.getElementById('results-header').style.background = personality.gradient;
-  document.getElementById('result-emoji').textContent = personality.emoji;
+  document.getElementById('result-emoji').innerHTML = `<img class="result-emoji-img" src="${personality.image}" alt="${personality.name}"><span class="result-credit">credit: ${personality.credit}</span>`;
 
   // Update name with adjective if in NSFW mode
   const resultAdjective = document.getElementById('result-adjective');
@@ -697,7 +714,7 @@ function showResults(typeId, adjectiveId = null) {
       card.className = 'compatible-card';
       card.style.background = compatType.gradient;
       card.innerHTML = `
-        <span class="compatible-emoji">${compatType.emoji}</span>
+        <img class="compatible-emoji" src="${compatType.image}" alt="${compatType.name}">
         <span class="compatible-name">${compatType.name}</span>
       `;
       compatibleContainer.appendChild(card);
