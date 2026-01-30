@@ -395,34 +395,32 @@ let activeQuestions = questions;
 const landingPage = document.getElementById('landing-page');
 const quizPage = document.getElementById('quiz-page');
 const resultsPage = document.getElementById('results-page');
+const detailPage = document.getElementById('detail-page');
 
 // Initialize the app
 function init() {
   populateTypeGrid();
   showPage('landing');
-  setMode('sfw'); // Default to SFW mode
+  setMode('nsfw'); // Default to NSFW mode
 }
 
 // Set quiz mode (SFW or NSFW)
 function setMode(mode) {
   isNsfwMode = mode === 'nsfw';
 
-  // Update button states
-  const sfwButton = document.getElementById('sfw-mode');
-  const nsfwButton = document.getElementById('nsfw-mode');
+  const toggle = document.getElementById('nsfw-toggle');
   const modeDescription = document.getElementById('mode-description');
   const intimacyTraitCard = document.getElementById('intimacy-trait-card');
 
+  // Sync checkbox state
+  toggle.checked = isNsfwMode;
+
   if (isNsfwMode) {
-    sfwButton.classList.remove('active');
-    nsfwButton.classList.add('active');
-    modeDescription.textContent = 'Includes spicy questions about sexual preferences';
+    modeDescription.textContent = 'Includes spicy questions about intimate preferences';
     modeDescription.classList.add('nsfw-active');
     intimacyTraitCard.classList.remove('hidden');
     activeQuestions = [...questions, ...nsfwQuestions];
   } else {
-    sfwButton.classList.add('active');
-    nsfwButton.classList.remove('active');
     modeDescription.textContent = 'Family-friendly personality quiz';
     modeDescription.classList.remove('nsfw-active');
     intimacyTraitCard.classList.add('hidden');
@@ -439,12 +437,14 @@ function populateTypeGrid() {
     const card = document.createElement('div');
     card.className = 'type-card';
     card.style.background = type.gradient;
+    card.style.cursor = 'pointer';
     card.innerHTML = `
       <img class="type-emoji" src="${type.image}" alt="${type.name}">
       <span class="type-credit">credit: ${type.credit}</span>
       <span class="type-name">${type.name}</span>
       <span class="type-tagline">${type.tagline}</span>
     `;
+    card.onclick = () => showTypeDetail(type.id);
     grid.appendChild(card);
   });
 }
@@ -454,6 +454,7 @@ function showPage(pageName) {
   landingPage.classList.add('hidden');
   quizPage.classList.add('hidden');
   resultsPage.classList.add('hidden');
+  detailPage.classList.add('hidden');
 
   if (pageName === 'landing') {
     landingPage.classList.remove('hidden');
@@ -461,7 +462,11 @@ function showPage(pageName) {
     quizPage.classList.remove('hidden');
   } else if (pageName === 'results') {
     resultsPage.classList.remove('hidden');
+  } else if (pageName === 'detail') {
+    detailPage.classList.remove('hidden');
   }
+
+  window.scrollTo(0, 0);
 }
 
 // Start the quiz
@@ -740,6 +745,68 @@ async function shareResult() {
       alert('Unable to share. Try copying the URL manually!');
     }
   }
+}
+
+// Show personality type detail page
+function showTypeDetail(typeId) {
+  const type = personalityTypes[typeId];
+  if (!type) return;
+
+  document.getElementById('detail-header').style.background = type.gradient;
+  document.getElementById('detail-emoji').innerHTML = `<img class="result-emoji-img" src="${type.image}" alt="${type.name}"><span class="result-credit">credit: ${type.credit}</span>`;
+  document.getElementById('detail-name').textContent = type.name;
+  document.getElementById('detail-tagline').textContent = type.tagline;
+  document.getElementById('detail-description').textContent = type.description;
+
+  // Traits
+  const traitsContainer = document.getElementById('detail-traits');
+  traitsContainer.innerHTML = '';
+  type.traits.forEach(trait => {
+    const tag = document.createElement('span');
+    tag.className = 'trait-tag';
+    tag.style.borderColor = type.color;
+    tag.textContent = trait;
+    traitsContainer.appendChild(tag);
+  });
+
+  // Strengths
+  const strengthsList = document.getElementById('detail-strengths');
+  strengthsList.innerHTML = '';
+  type.strengths.forEach(s => {
+    const li = document.createElement('li');
+    li.textContent = s;
+    strengthsList.appendChild(li);
+  });
+
+  // Challenges
+  const challengesList = document.getElementById('detail-challenges');
+  challengesList.innerHTML = '';
+  type.challenges.forEach(c => {
+    const li = document.createElement('li');
+    li.textContent = c;
+    challengesList.appendChild(li);
+  });
+
+  // Compatible types
+  const compatContainer = document.getElementById('detail-compatible');
+  compatContainer.innerHTML = '';
+  type.compatibleWith.forEach(name => {
+    const compatType = Object.values(personalityTypes).find(t => t.name === name);
+    if (compatType) {
+      const card = document.createElement('div');
+      card.className = 'compatible-card';
+      card.style.background = compatType.gradient;
+      card.style.cursor = 'pointer';
+      card.innerHTML = `
+        <img class="compatible-emoji" src="${compatType.image}" alt="${compatType.name}">
+        <span class="compatible-name">${compatType.name}</span>
+      `;
+      card.onclick = () => showTypeDetail(compatType.id);
+      compatContainer.appendChild(card);
+    }
+  });
+
+  showPage('detail');
 }
 
 // Go back home

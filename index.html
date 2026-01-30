@@ -27,14 +27,15 @@
           </p>
 
           <div class="mode-toggle">
-            <button class="mode-button active" id="sfw-mode" onclick="setMode('sfw')">
-              SFW Mode
-            </button>
-            <button class="mode-button" id="nsfw-mode" onclick="setMode('nsfw')">
-              18+ Mode
-            </button>
+            <span class="mode-label">SFW</span>
+            <label class="toggle-switch" id="mode-switch">
+              <input type="checkbox" id="nsfw-toggle" onchange="setMode(this.checked ? 'nsfw' : 'sfw')" checked>
+              <span class="toggle-slider"></span>
+            </label>
+            <span class="mode-label">18+</span>
           </div>
-          
+          <p class="mode-description" id="mode-description"></p>
+
           <button class="start-button" onclick="startQuiz()">
             Take the Test
           </button>
@@ -76,6 +77,57 @@
         <footer class="landing-footer">
           <p>Made by ranfur</p>
         </footer>
+      </div>
+    </div>
+
+    <!-- Personality Detail Page -->
+    <div id="detail-page" class="page hidden">
+      <div class="results">
+        <div class="results-container">
+          <div class="results-header" id="detail-header">
+            <span class="result-emoji" id="detail-emoji"></span>
+            <h1 class="result-name" id="detail-name"></h1>
+            <p class="result-tagline" id="detail-tagline"></p>
+          </div>
+
+          <div class="results-content">
+            <section class="result-section">
+              <h2>About This Type</h2>
+              <p class="description" id="detail-description"></p>
+            </section>
+
+            <section class="result-section">
+              <h2>Key Traits</h2>
+              <div class="traits-list" id="detail-traits"></div>
+            </section>
+
+            <div class="two-column">
+              <section class="result-section">
+                <h2>Strengths</h2>
+                <ul class="list strengths" id="detail-strengths"></ul>
+              </section>
+
+              <section class="result-section">
+                <h2>Challenges</h2>
+                <ul class="list challenges" id="detail-challenges"></ul>
+              </section>
+            </div>
+
+            <section class="result-section compatibility">
+              <h2>Compatible With</h2>
+              <div class="compatible-types" id="detail-compatible"></div>
+            </section>
+
+            <div class="actions">
+              <button class="start-button" onclick="startQuiz()">
+                Take the Test
+              </button>
+              <button class="home-button" onclick="goHome()">
+                Back Home
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
